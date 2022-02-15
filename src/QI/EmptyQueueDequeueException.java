@@ -1,12 +1,10 @@
 package QI;
 
-public class EmptyQueueDequeueException extends RuntimeException
-{
+public class EmptyQueueDequeueException extends RuntimeException {
     /**
      * Constructor uses no error message.
      */
-    public EmptyQueueDequeueException()
-    {
+    public EmptyQueueDequeueException() {
         super();
     }
 
@@ -14,8 +12,7 @@ public class EmptyQueueDequeueException extends RuntimeException
      * Constructor specifies an error message.
      * @param message The error message.
      */
-    public EmptyQueueDequeueException(String message)
-    {
+    public EmptyQueueDequeueException(String message) {
         super(message);
     }
 }
