@@ -1,7 +1,6 @@
 package QI;
 
-public interface QueueInterface<T>
-{
+public interface QueueInterface<T> {
     void enqueue(T element) throws FullQueueEnqueueException;
     T dequeue() throws EmptyQueueDequeueException;
     boolean isFull();
