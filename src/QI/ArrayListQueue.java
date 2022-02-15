@@ -2,33 +2,30 @@ package QI;
 
 import java.util.ArrayList;
 
-public class ArrayListQueue<T> implements QueueInterface<T>
-{
+public class ArrayListQueue<T> implements QueueInterface<T> {
     private ArrayList<T> items = new ArrayList<>();
     private int totalItems = 0;
     private int front = 0;
     private int rear = 0;
 
     /**
-     * enqueue Adds a value to the rear of the ArrayList.
-     * @param input The value to be placed in the ArrayList.
+     * enqueue Adds a value to the rear of the Queue.
+     * @param input The value to be placed in the Queue.
      */
-    public void enqueue(T input)
-    {
-        items.add(rear, input);
-        rear++;
+    public void enqueue(T input) {
+        items.add(rear++, input);
         totalItems++;
     }
 
     /**
-     * dequeue Removes a value from the front of the ArrayList.
+     * dequeue Removes a value from the front of the Queue.
      * @return The value of the removed index.
-     * @throws EmptyQueueDequeueException If dequeue is attempted while the ArrayList is empty.
+     * @throws EmptyQueueDequeueException If dequeue is attempted while the Queue is empty.
      */
-    public T dequeue() throws EmptyQueueDequeueException
-    {
-        if(isEmpty())
-            throw new EmptyQueueDequeueException("dequeue attempted on an empty queue.");
+    public T dequeue() throws EmptyQueueDequeueException {
+        if(isEmpty()) {
+            throw new EmptyQueueDequeueException("Dequeue attempted on an empty Queue.");
+        }
         T temp = items.get(front);
         items.remove(front);
         rear--;
@@ -37,29 +34,26 @@ public class ArrayListQueue<T> implements QueueInterface<T>
     }
 
     /**
-     * isFull Checks if the ArrayList is full.
-     * @return False because an ArrayList cannot be full.
+     * isFull Checks if the Queue is full.
+     * @return False because a Queue cannot be full.
      */
-    public boolean isFull()
-    {
+    public boolean isFull() {
         return false;
     }
 
     /**
-     * isEmpty Checks if there are no values in the ArrayList.
-     * @return True if there are no values in the ArrayList, false otherwise.
+     * isEmpty Checks if there are no values in the Queue.
+     * @return True if there are no values in the Queue, false otherwise.
      */
-    public boolean isEmpty()
-    {
+    public boolean isEmpty() {
         return totalItems == 0;
     }
 
     /**
-     * size Returns the number of values in the ArrayList.
-     * @return The count of values in the ArrayList.
+     * size Returns the number of values in the Queue.
+     * @return The count of values in the Queue.
      */
-    public int size()
-    {
+    public int size() {
         return totalItems;
     }
 }
