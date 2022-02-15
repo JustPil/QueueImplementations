@@ -1,7 +1,6 @@
 package QI;
 
-public interface DequeInterface<T>
-{
+public interface DequeInterface<T> {
     void enqueueFront(T element);
     void enqueueRear(T element);
     T dequeueFront() throws EmptyQueueDequeueException;
