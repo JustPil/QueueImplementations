@@ -1,7 +1,6 @@
 package QI;
 
-public class CircularLinkedListQueue<T> implements DequeInterface<T>
-{
+public class CircularLinkedListQueue<T> implements DequeInterface<T> {
     private Node<T> front;
     private Node<T> rear;
     private int nodeCount = 0;
@@ -9,25 +8,20 @@ public class CircularLinkedListQueue<T> implements DequeInterface<T>
     /**
      * Constructor sets the front and rear nodes to null.
      */
-    public CircularLinkedListQueue()
-    {
+    public CircularLinkedListQueue() {
         front = rear = null;
     }
 
     /**
-     * enqueueFront Inserts a new node at the front of the linked list.
+     * enqueueFront Inserts a new node at the front of the Queue.
      * @param data The data for the new node to hold.
      */
-    public void enqueueFront(T data)
-    {
+    public void enqueueFront(T data) {
         Node<T> insert = new Node<>(data);
-        if(nodeCount == 0)
-        {
+        if(nodeCount == 0) {
             front = rear = insert;
             nodeCount++;
-        }
-        else
-        {
+        } else {
             insert.setNext(front);
             front = insert;
             rear.setNext(front);
@@ -36,19 +30,15 @@ public class CircularLinkedListQueue<T> implements DequeInterface<T>
     }
 
     /**
-     * enqueueRear Inserts a new node at the rear of the linked list.
+     * enqueueRear Inserts a new node at the rear of the Queue.
      * @param data The data for the new node to hold.
      */
-    public void enqueueRear(T data)
-    {
+    public void enqueueRear(T data) {
         Node<T> insert = new Node<>(data);
-        if(nodeCount == 0)
-        {
+        if(nodeCount == 0) {
             front = rear = insert;
             nodeCount++;
-        }
-        else
-        {
+        } else {
             rear.setNext(insert);
             rear = insert;
             rear.setNext(front);
@@ -57,21 +47,18 @@ public class CircularLinkedListQueue<T> implements DequeInterface<T>
     }
 
     /**
-     * dequeueFront Removes a node from the front of the linked list.
+     * dequeueFront Removes a node from the front of the Queue.
      * @return The data held by the removed node.
      */
-    public T dequeueFront()
-    {
-        if(isEmpty())
+    public T dequeueFront() {
+        if(isEmpty()) {
             throw new EmptyQueueDequeueException("dequeue attempted on an empty queue.");
+        }
         T removedNode = front.getData();
-        if(nodeCount == 1)
-        {
+        if(nodeCount == 1) {
             front = rear = null;
             nodeCount--;
-        }
-        else
-        {
+        } else {
             front = front.getNext();
             rear.setNext(front);
             nodeCount--;
@@ -80,26 +67,21 @@ public class CircularLinkedListQueue<T> implements DequeInterface<T>
     }
 
     /**
-     * dequeueRear Removes a node from the rear of the linked list.
+     * dequeueRear Removes a node from the rear of the Queue.
      * @return The data held by the removed node.
      */
-    public T dequeueRear()
-    {
-        if(isEmpty())
+    public T dequeueRear() {
+        if(isEmpty()) {
             throw new EmptyQueueDequeueException("dequeue attempted on an empty queue.");
+        }
         T removedNode = rear.getData();
-        if(nodeCount == 1)
-        {
+        if(nodeCount == 1) {
             front = rear = null;
             nodeCount--;
-        }
-        else
-        {
+        } else {
             Node<T> parser = front;
-            while(true)
-            {
-                if(parser.getNext().getNext() == front)
-                {
+            while(true) {
+                if(parser.getNext().getNext() == front) {
                     parser.setNext(front);
                     rear = parser;
                     nodeCount--;
@@ -112,66 +94,57 @@ public class CircularLinkedListQueue<T> implements DequeInterface<T>
     }
 
     /**
-     * isEmpty Checks if there are no nodes in the linked list.
+     * isEmpty Checks if there are no nodes in the Queue.
      * @return True if there are no nodes, false otherwise.
      */
-    public boolean isEmpty()
-    {
+    public boolean isEmpty() {
         return nodeCount == 0;
     }
 
     /**
-     * isFull Checks if the linked list is full.
-     * @return False because a linked list cannot be full.
+     * isFull Checks if the Queue is full.
+     * @return False because Queue implemented with a Linked List cannot be full.
      */
-    public boolean isFull()
-    {
+    public boolean isFull() {
         return false;
     }
 
     /**
-     * size Returns the size of the linked list.
-     * @return The amount of nodes in the linked list.
+     * size Returns the size of the Queue.
+     * @return The number of nodes in the Queue.
      */
-    public int size()
-    {
+    public int size() {
         return nodeCount;
     }
 
     /**
-     * remove Removes a set amount of nodes from the front of the linked list.
+     * remove Removes a set amount of nodes from the front of the Queue.
      * @param count The amount of nodes to be removed.
      */
-    public void remove(int count)
-    {
-        if(count > nodeCount)
+    public void remove(int count) {
+        if(count > nodeCount) {
             throw new EmptyQueueDequeueException("Not enough elements for removal.");
-        for(int i = 0; i < count; i++)
-        {
+        }
+        for(int i = 0; i < count; i++) {
             front = front.getNext();
             nodeCount--;
-            if(nodeCount == 0)
-            {
+            if(nodeCount == 0) {
                 front = rear = null;
             }
         }
     }
 
     /**
-     * swapStart Swaps the first two nodes at the front of the linked list.
+     * swapStart Swaps the first two nodes at the front of the Queue.
      * @return True if the swap was successful, false otherwise.
      */
-    public boolean swapStart()
-    {
-        if(nodeCount < 2)
+    public boolean swapStart() {
+        if(nodeCount < 2) {
             return false;
-        else if(nodeCount == 2)
-        {
+        } else if(nodeCount == 2) {
             rear = front;
             front = front.getNext();
-        }
-        else
-        {
+        } else {
             Node<T> temp1 = front.getNext();
             Node<T> temp2 = temp1.getNext();
             temp1.setNext(front);
@@ -182,25 +155,19 @@ public class CircularLinkedListQueue<T> implements DequeInterface<T>
     }
 
     /**
-     * swapEnds Swqaps the last two nodes at the rear of the linked list.
+     * swapEnds Swaps the last two nodes at the rear of the Queue.
      * @return True if the swap was successful, false otherwise.
      */
-    public boolean swapEnds()
-    {
-        if(nodeCount < 2)
+    public boolean swapEnds() {
+        if(nodeCount < 2) {
             return false;
-        else if(nodeCount == 2)
-        {
+        } else if(nodeCount == 2) {
             rear = front;
             front = rear.getNext();
-        }
-        else
-        {
+        } else {
             Node<T> parser = front;
-            while(true)
-            {
-                if(parser.getNext().getNext().getNext() == front.getNext())
-                {
+            while(true) {
+                if(parser.getNext().getNext().getNext() == front.getNext()) {
                     Node<T> temp = parser.getNext();
                     parser.setNext(rear);
                     rear.setNext(temp);
@@ -215,19 +182,15 @@ public class CircularLinkedListQueue<T> implements DequeInterface<T>
     }
 
     /**
-     * toString Outputs information about the current contents of the linked list.
-     * @return A string containing information about the current contents of the linked list.
+     * toString Outputs information about the Queue.
+     * @return A string containing information about the Queue.
      */
-    public String toString()
-    {
-        String str = "";
-        if(front == null)
-        {
-            str += "Front: null\nRear: null";
-        }
-        else
-        {
-            str += "Front: " + front.getData() + "\nRear: " + rear.getData();
+    public String toString() {
+        StringBuilder str = new StringBuilder();
+        if(front == null) {
+            str.append("Front: null\nRear: null");
+        } else {
+            str.append("Front: ").append(front.getData()).append("\nRear: ").append(rear.getData());
         }
         return str + "\nSize: " + nodeCount + "\nEmpty: " + isEmpty() + "\nFull: " + isFull();
     }
