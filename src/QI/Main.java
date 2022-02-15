@@ -157,7 +157,7 @@ public class Main {
      * @param s A Scanner to relay user input.
      */
     public static void dequeCircularLinkedList(Scanner s) {
-        CircularLinkedListQueue<Integer> deque = new CircularLinkedListQueue<>();
+        CircularLinkedListDeque<Integer> deque = new CircularLinkedListDeque<>();
         String choice = "";
         while(!choice.equalsIgnoreCase("X")) {
             dequeCircularMenu();
