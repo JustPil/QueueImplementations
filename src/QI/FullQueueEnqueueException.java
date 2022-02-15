@@ -1,12 +1,10 @@
 package QI;
 
-public class FullQueueEnqueueException extends RuntimeException
-{
+public class FullQueueEnqueueException extends RuntimeException {
     /**
      * Constructor uses no error message.
      */
-    public FullQueueEnqueueException()
-    {
+    public FullQueueEnqueueException() {
         super();
     }
 
@@ -14,8 +12,7 @@ public class FullQueueEnqueueException extends RuntimeException
      * Constructor specifies an error message.
      * @param message The error message.
      */
-    public FullQueueEnqueueException(String message)
-    {
+    public FullQueueEnqueueException(String message) {
         super(message);
     }
 }
